@@ -6,8 +6,9 @@ http.listen(3000);
 io.on('connection', socket => {
     console.log('Kullanıcı bağlandı.');
 
-    socket.on('message', data => {
-        socket.broadcast.emit('message', data);
+    socket.on('login', data => {
+        const user = JSON.parse(data);
+        socket.broadcast.emit('login', user);
     });
 
     socket.on('disconnect', () => {
